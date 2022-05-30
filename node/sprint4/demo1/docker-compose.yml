@@ -1,0 +1,31 @@
+services:
+  api:
+    container_name: demoApi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      - pg
+    command: bash -c 'yarn migration:run && yarn dev'
+  pg:
+    container_name: demoDb
+    image: postgres
+    env_file:
+      - .env
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+  # nginx:
+  #   container_name: nginx_teste
+  #   image: nginx
+  #   ports:
+  #     - 81:80
+  #   depends_on:
+  #     - api
