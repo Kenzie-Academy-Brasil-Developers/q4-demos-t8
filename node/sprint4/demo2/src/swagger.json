@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Demoq4 api",
+    "description": "Essa é a api das demos do Q4",
+    "version": "1.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api-documentation",
+      "description": "test"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": ["User"],
+        "description": "Essa é a rota de registro de um novo usuário",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "examples": {
+              "user": {
+                "values": {
+                  "username": "claudiohasler",
+                  "email": "paulo@kenzie.com.br",
+                  "password": "meuNomeEPedro123!",
+                  "age": 27
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid credentials"
+          },
+          "409": {
+            "description": "Email already exists."
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["User"]
+      }
+    },
+    "/restaurants": {
+      "get": {
+        "tags": ["Rest"]
+      },
+      "delete": {
+        "tags": ["Rest"]
+      },
+      "patch": {
+        "tags": ["Rest"]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
