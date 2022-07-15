@@ -1,0 +1,10 @@
+#.coveragerc
+[run]
+source = .
+omit =
+    venv/*
+    core/*
+    manage.py
+
+[report]
+show_missing = True
